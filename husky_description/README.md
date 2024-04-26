@@ -76,7 +76,7 @@ export HUSKY_A01_BRACKET_ENABLED=1
 export HUSKY_A01_BRACKET_TYPE='horizontal' # or 'horizontal_large' or 'vertical'
 export HUSKY_A01_BRACKET_XYZ='0 0 0'
 export HUSKY_A01_BRACKET_RPY='0 0 0'
-export HUSKY_A01_BRACKET_EXTENSION='0' # distance from surface of plate/riser to surface of bracket
+export HUSKY_A01_BRACKET_EXTENSION='0' # distance from surface of plate/riser to surface of bracket in milimeters
 ```
 
 ## Sensor Arch
