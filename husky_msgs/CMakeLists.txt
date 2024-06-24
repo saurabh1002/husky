@@ -16,7 +16,9 @@ find_package(builtin_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(husky_msgs
-   msg/HuskyStatus.msg
+   	msg/Power.msg
+	msg/StopStatus.msg
+	msg/Status.msg
   DEPENDENCIES
    builtin_interfaces std_msgs
 )

@@ -1,6 +1,4 @@
-#ifndef HUSKY_BASE__HUSKY_HARDWARE_HPP_
-#define HUSKY_BASE__HUSKY_HARDWARE_HPP_
-
+#include <chrono>
 #include <memory>
 #include <string>
 #include <vector>
@@ -12,11 +10,17 @@
 #include "hardware_interface/visibility_control.h"
 #include "rclcpp/macros.hpp"
 
-#include <chrono>
-
 #include "rclcpp/rclcpp.hpp"
 
+#include "std_msgs/msg/bool.hpp"
+#include "std_msgs/msg/float32.hpp"
+
 #include "husky_base/horizon_legacy_wrapper.h"
+#include "husky_base/status.hpp"
+
+#include "husky_msgs/msg/power.hpp"
+#include "husky_msgs/msg/status.hpp"
+#include "husky_msgs/msg/stop_status.hpp"
 
 using namespace std::chrono_literals;
 
@@ -30,6 +34,7 @@ public:
 
   HARDWARE_INTERFACE_PUBLIC
   hardware_interface::CallbackReturn on_init(const hardware_interface::HardwareInfo & info) override;
+
   HARDWARE_INTERFACE_PUBLIC
   std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
 
@@ -55,6 +60,7 @@ private:
   void writeCommandsToHardware();
   void limitDifferentialSpeed(double &diff_speed_left, double &diff_speed_right);
   void updateJointsFromHardware();
+  void readStatusFromHardware();
   uint8_t isLeft(const std::string &str);
 
   // ROS Parameters
@@ -67,8 +73,15 @@ private:
   std::vector<double> hw_states_position_, hw_states_position_offset_, hw_states_velocity_;
 
   uint8_t left_cmd_joint_index_, right_cmd_joint_index_;
+
+  std::shared_ptr<a200_status::A200Status> status_node_;
+  husky_msgs::msg::Power power_msg_;
+  husky_msgs::msg::Status status_msg_;
+  husky_msgs::msg::StopStatus stop_status_msg_;
+  std_msgs::msg::Bool stop_msg_;
+  std_msgs::msg::Float32 driver_left_temp_msg_, driver_right_temp_msg_;
+  std_msgs::msg::Float32 motor_left_temp_msg_, motor_right_temp_msg_;
 };
 
 }  // namespace husky_base
 
-#endif  // HUSKY_BASE__HUSKY_HARDWARE_HPP_

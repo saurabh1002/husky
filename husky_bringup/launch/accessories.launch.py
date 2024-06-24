@@ -16,8 +16,8 @@ def generate_launch_description():
     # Primary Lidar Environment Variables
     primary_lidar_enable = EnvironmentVariable('CPR_LASER', default_value='false')
     primary_lidar_model = EnvironmentVariable('CPR_LASER_MODEL', default_value='ust10')
-    primary_lidar_ip = EnvironmentVariable('CPR_LASER_HOST', default_value='192.168.131.20')
-    primary_lidar_topic = EnvironmentVariable('CPR_LASER_TOPIC', default_value='front/scan')
+    primary_lidar_ip = EnvironmentVariable('CPR_LASER_HOST', default_value='192.168.0.10')
+    primary_lidar_topic = EnvironmentVariable('CPR_LASER_TOPIC', default_value='front_scan')
     primary_lidar_mount = EnvironmentVariable('CPR_LASER_MOUNT', default_value='front_laser')
 
     if (primary_lidar_enable.perform(lc)) == 'true':
@@ -37,10 +37,10 @@ def generate_launch_description():
 
 
     # Secondary Lidar Environment Variables
-    secondary_lidar_enable = EnvironmentVariable('CPR_LASER_SECONDARY', default_value='false')
+    secondary_lidar_enable = EnvironmentVariable('CPR_LASER_SECONDARY', default_value='true')
     secondary_lidar_model = EnvironmentVariable('CPR_LASER_SECONDARY_MODEL', default_value='ust10')
-    secondary_lidar_ip = EnvironmentVariable('CPR_LASER_SECONDARY_HOST', default_value='192.168.131.21')
-    secondary_lidar_topic = EnvironmentVariable('CPR_LASER_SECONDARY_TOPIC', default_value='rear/scan')
+    secondary_lidar_ip = EnvironmentVariable('CPR_LASER_SECONDARY_HOST', default_value='192.168.0.20')
+    secondary_lidar_topic = EnvironmentVariable('CPR_LASER_SECONDARY_TOPIC', default_value='rear_scan')
     secondary_lidar_mount = EnvironmentVariable('CPR_LASER_SECONDARY_MOUNT', default_value='rear_laser')
 
     if (secondary_lidar_enable.perform(lc)) == 'true':

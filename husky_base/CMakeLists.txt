@@ -33,6 +33,7 @@ find_package(tf2_ros REQUIRED)
 add_library(
   husky_hardware
   SHARED
+  src/status.cpp
   src/husky_hardware.cpp
   src/horizon_legacy_wrapper.cpp
   src/horizon_legacy/crc.cpp
@@ -54,6 +55,7 @@ target_include_directories(
 
 ament_target_dependencies(
   husky_hardware
+  husky_msgs
   hardware_interface
   pluginlib
   rclcpp
